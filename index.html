@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Intesa Vincente</title>
+
+    <link rel="stylesheet" href="style/index.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=New+Amsterdam&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="overlay hide" id="overlay">
+        <h2 class="countdown" id="countdown">3</h2>
+        <div class="result hide" id="result">
+            <h2 class="question">Hai indovinato?</h2>
+            <button class="result yes" onclick="resultButton(this)">Si</button>
+            <button class="result no" onclick="resultButton(this)">No</button>
+        </div>
+    </div>
+
+    <header>
+        <h1>L'Intesa Vincente</h1>
+    </header>
+    <main>
+        <div class="center">
+            <p class="instruction">Premi <span class="highlight">SPAZIO</span> per giocare</p>
+            <h3 class="word" id="word"></h2>
+            <div class="stats">
+                <h3 class="guessed" id="guessed">0</h3>
+                <h3 class="time" id="time-left">:60</h3>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p class="copyright">Manuel Manco 2024® | Versione 1.0</p>
+    </footer>
+    <script src="script/index.js"></script>
+</body>
+</html>

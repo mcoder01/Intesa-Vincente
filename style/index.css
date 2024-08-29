@@ -1,0 +1,169 @@
+body {
+    background: linear-gradient(150deg, rgb(69, 162, 255) 0%,rgb(203, 234, 255) 100%);
+    font-family: "New Amsterdam", sans-serif;
+    font-style: normal;
+    letter-spacing: 2px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+main {
+    height: 100%;
+}
+
+.center {
+    text-align: center;
+    align-content: center;
+    height: 100%;
+}
+
+h1 {
+    margin: 0;
+    font-size: 5vw;
+    letter-spacing: .8vw;
+    font-style: bold;
+    margin-top: 40px;
+    color: white;
+    text-shadow: .3vw .3vw 2px gray;
+}
+
+h2 {
+    font-size: 7vw;
+    color: white;
+}
+
+h3 {
+    width: 6vw;
+    height: 6vw;
+    font-size: 4vw;
+    font-weight: normal;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+h3::before {
+    content: '';
+    position: absolute;
+    border-radius: 2vw;
+    box-shadow: 7px 7px 5px rgba(255, 255, 255, 0.55) inset,
+                -7px -7px 5px rgba(0, 0, 0, 0.25) inset,
+                10px 10px 4px -5px rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+button {
+    border: none;
+    border-radius: 20%;
+    box-shadow: 7px 7px 5px rgba(255, 255, 255, 0.54) inset,
+                -7px -7px 5px rgba(0, 0, 0, 0.2) inset,
+                10px 10px 4px -5px rgba(0, 0, 0, 0.4);
+    font-family: "New Amsterdam", sans-serif;
+    color: white;
+}
+
+.instruction {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 5vh;
+}
+
+.instruction .highlight {
+    color: rgba(172, 245, 255, 0.85);
+    text-shadow: 4px 4px 1px rgba(0, 0, 0, 0.2);
+}
+
+.word {
+    width: 100%;
+    margin: calc(200px - 5vw) 0;
+}
+
+.word::before {
+    width: 70vw;
+    height: 8vw;
+    background-color: rgb(0, 195, 255);
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+}
+
+.guessed {
+    margin-right: 8vw;
+}
+
+.guessed::before {
+    width: 10vw;
+    height: 10vw;
+    background-color: rgb(0, 174, 0);
+}
+
+.time {
+    margin-left: 8vw;
+}
+
+.time::before {
+    width: 10vw;
+    height: 10vw;
+    background-color: rgb(0, 157, 255);
+}
+
+.overlay {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #000000BB;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide {
+    display: none !important;
+}
+
+.countdown {
+    font-size: 20vw;
+    color: white;
+    text-shadow: .8vw .8vw 2px rgb(79, 79, 79);
+    text-align: center;
+}
+
+.question {
+    margin: 0;
+    margin-bottom: 4vw;
+    font-size: 6vw;
+}
+
+.result button {
+    font-size: 6vw;
+    width: 12vw;
+    height: 12vw;
+}
+
+.result .yes {
+    background-color: lime;
+    margin-right: 3vw;
+}
+
+.result .no {
+    background-color: red;
+    margin-left: 3vw;
+}
+
+.result button:active {
+    box-shadow: -5px -5px 5px rgba(255, 255, 255, 0.3) inset,
+                7px 7px 5px rgba(0, 0, 0, 0.3) inset;
+    transform: translate(5px, 5px);
+}
+
+footer {
+    justify-content: center;
+    color: white;
+    text-shadow: 1px 1px 2px gray;
+}
