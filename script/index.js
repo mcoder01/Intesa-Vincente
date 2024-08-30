@@ -1,6 +1,9 @@
+let device;
+
 let word;
 let timeLeft;
 let guessed;
+let skips;
 
 let overlay;
 let countdown;
@@ -10,6 +13,10 @@ let words;
 let doubleWords;
 
 let timerId;
+
+let wordSound;
+let buzzSound;
+let timeOverSound;
 
 async function loadTextFile(file) {
     let text = await (await fetch(file)).text();
@@ -21,41 +28,69 @@ async function loadWords() {
     doubleWords = await loadTextFile("res/raddoppio.txt");
 }
 
+function loadSounds() {
+    wordSound = new Audio("res/sound/word-spawn.mp3");
+    buzzSound = new Audio("res/sound/buzz.mp3");
+    timeOverSound = new Audio("res/sound/time-over.mp3");
+}
+
+function checkDevice() {
+    if (navigator.userAgent.match("Android|iPhone|iPad")) {
+        document.getElementById("instr-mobile").classList.remove("hide");
+        document.body.onclick = buzzer;
+    } else {
+        document.getElementById("instr-desktop").classList.remove("hide");
+        window.onkeydown = key => {
+            if (key.key == " ")
+                buzzer();
+        }
+    }
+}
+
 window.onload = function() {
     word = document.getElementById("word");
     timeLeft = document.getElementById("time-left");
     guessed = document.getElementById("guessed");
+    skips = document.getElementById("skips");
+    doubles = document.getElementById("doubles");
 
     overlay = document.getElementById("overlay");
     countdown = document.getElementById("countdown");
     result = document.getElementById("result");
+
+    checkDevice();
     loadWords();
+    loadSounds();
 }
 
-window.onkeydown = function(key) {
+function buzzer() {
     if (!overlay.classList.contains("hide"))
         return;
 
-    if (key.key == " ") {
-        if (timerId === undefined) {
-            let r = parseInt(Math.random()*words.length);
-            word.innerText = words[r];
-            timerId = createTimer(
-                parseInt(timeLeft.innerText.slice(1)), 
-                time => timeLeft.innerText = ":" + (time > 9 ? time : "0" + time), 
-                () => timerId = undefined
-            );
-        } else {
-            stopTimer(timerId, () => timerId = undefined);
-            overlay.classList.toggle("hide");
-            createTimer(3, time => countdown.innerText = time, 
-                () => {
-                    countdown.innerText = "3";
-                    countdown.classList.toggle("hide");
-                    result.classList.toggle("hide");
-                }
-            );
-        }
+    if (timerId === undefined) {
+        let r = parseInt(Math.random()*words.length);
+        word.innerText = words[r];
+        timerId = createTimer(
+            parseInt(timeLeft.innerText.slice(1)), 
+            time => timeLeft.innerText = ":" + (time > 9 ? time : "0" + time), 
+            () => {
+                timerId = undefined;
+                timeOverSound.play();
+            }
+        );
+        wordSound.play();
+    } else {
+        stopTimer(timerId, () => timerId = undefined);
+        overlay.classList.toggle("hide");
+        createTimer(3, time => countdown.innerText = time, 
+            () => {
+                countdown.innerText = "3";
+                countdown.classList.toggle("hide");
+                document.body.onclick = undefined;
+                result.classList.toggle("hide");
+            }
+        );
+        buzzSound.play();
     }
 }
 
@@ -77,11 +112,25 @@ function stopTimer(id, onfinish) {
 }
 
 function resultButton(btn) {
-    let guessedWords = parseInt(guessed.innerText);
-    if (btn.innerText == "Si") guessedWords++;
-    else if (guessedWords > 0) guessedWords--;
-    guessed.innerText = guessedWords;
+    if (btn.innerText == "Passo") {
+        let leftSkips = parseInt(skips.innerText);
+        leftSkips--;
+        skips.innerText = leftSkips;
+        if (leftSkips == 0)
+            btn.classList.toggle("hide");
+    } else if (btn.innerText == "Raddoppia") {
+        let leftDoubles = parseInt(doubles.innerText);
+        leftDoubles--;
+        skips.innerText = leftDoubles;
+    } else {
+        let guessedWords = parseInt(guessed.innerText);
+        if (btn.innerText == "Si") guessedWords++;
+        else if (guessedWords > 0) guessedWords--;
+        guessed.innerText = guessedWords;
+    }
+
     result.classList.toggle("hide");
     countdown.classList.toggle("hide");
     overlay.classList.toggle("hide");
+    setTimeout(checkDevice, 300);
 }

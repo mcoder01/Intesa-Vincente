@@ -18,6 +18,7 @@
             <h2 class="question">Hai indovinato?</h2>
             <button class="result yes" onclick="resultButton(this)">Si</button>
             <button class="result no" onclick="resultButton(this)">No</button>
+            <button class="result skip" onclick="resultButton(this)">Passo</button>
         </div>
     </div>
 
@@ -26,16 +27,29 @@
     </header>
     <main>
         <div class="center">
-            <p class="instruction">Premi <span class="highlight">SPAZIO</span> per giocare</p>
+            <p class="instruction hide" id="instr-desktop">Premi <label class="highlight">spazio</label> per giocare</p>
+            <p class="instruction hide" id="instr-mobile">Tocca lo <label class="highlight">schermo</label> per giocare</p>
             <h3 class="word" id="word"></h2>
             <div class="stats">
-                <h3 class="guessed" id="guessed">0</h3>
-                <h3 class="time" id="time-left">:60</h3>
+                <div>
+                    <h3 class="guessed" id="guessed">0</h3>
+                    <h3 class="time" id="time-left">:60</h3>
+                </div>
+                <div>
+                    <h3 class="skips">
+                        <label class="name">Passo</label>
+                        <span id="skips">3</span>
+                    </h3>
+                    <h3 class="doubles">
+                        <label class="name">Raddoppia</label>
+                        <span id="doubles">2</span>
+                    </h3>
+                </div>
             </div>
         </div>
     </main>
     <footer>
-        <p class="copyright">Manuel Manco 2024® | Versione 1.0</p>
+        <p class="copyright">Manuel Manco 2024® | Versione 1.1</p>
     </footer>
     <script src="script/index.js"></script>
 </body>
