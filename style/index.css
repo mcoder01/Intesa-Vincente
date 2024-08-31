@@ -8,7 +8,8 @@ body {
     flex-direction: column;
     text-align: center;
     height: 100vh;
-    width: 100vw;
+    min-height: 100vh;
+    min-width: 100vw;
 }
 
 main {
@@ -66,7 +67,7 @@ h3 {
 h3::before {
     content: '';
     position: absolute;
-    border-radius: 30px;
+    border-radius: 2vh;
     box-shadow: 7px 7px 5px rgba(255, 255, 255, 0.55) inset,
                 -7px -7px 5px rgba(0, 0, 0, 0.25) inset,
                 10px 10px 4px -5px rgba(0, 0, 0, 0.4);
@@ -112,7 +113,7 @@ button {
 
 .word {
     width: 100%;
-    margin: calc(130px - 5vw) 0;
+    margin: calc(150px - 5vh) 0;
     font-size: 3vw;
 }
 
@@ -127,29 +128,29 @@ button {
 
 .stats {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 6vw;
+    gap: 8vh;
 }
 
 .stats div {
     display: flex;
-    gap: 6vw;
+    gap: 8vh;
 }
 
 .guessed, .time, .skips, .doubles {
     display: flex;
     flex-direction: column;
+    margin: 0;
 }
 
 .guessed::before, 
 .time::before, 
 .skips::before, 
 .doubles::before {
-    width: 8vw;
-    height: 8vw;
-    min-width: 100px;
-    min-height: 100px;
+    width: 9vh;
+    height: 9vh;
 }
 
 .guessed::before {
@@ -165,31 +166,8 @@ button {
 }
 
 .skips .name, .doubles .name {
-    font-size: 1vw;
-    transform: translateY(4px);
-}
-
-@media only screen and (width < 980px) {
-    .stats {
-        gap: 20px;
-        flex-direction: column;
-    }
-
-    .stats div {
-        gap: 100px;
-    }
-
-    h3 {
-        font-size: 5vh;
-    }
-
-    .word {
-        font-size: 4vh;
-    }
-
-    .skips .name, .doubles .name {
-        font-size: 10px;
-    }
+    font-size: 1vh;
+    transform: translateY(-4px);
 }
 
 .overlay {
@@ -252,7 +230,6 @@ button {
 
 footer {
     font-size: 2vw;
-    justify-content: center;
     color: white;
     text-shadow: 1px 1px 2px gray;
 }
@@ -268,6 +245,27 @@ footer {
 
     .instruction {
         font-size: 5vh;
+    }
+
+    .stats {
+        flex-direction: row;
+        gap: 6vw;
+    }
+
+    .stats div {
+        gap: 6vw;
+    }
+
+    h3::before {
+        border-radius: 2vw;
+    }
+
+    .guessed::before, 
+    .time::before, 
+    .skips::before, 
+    .doubles::before {
+        width: 8vw;
+        height: 8vw;
     }
 
     footer {
@@ -291,5 +289,10 @@ footer {
 
     .result .skip {
         width: 13vw;
+    }
+
+    .skips .name, .doubles .name {
+        font-size: 1vw;
+        transform: translateY(4px);
     }
 }

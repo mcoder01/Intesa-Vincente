@@ -63,35 +63,40 @@ window.onload = function() {
     loadSounds();
 }
 
+function answerProcedure() {
+    stopTimer(timerId, () => timerId = undefined);
+    overlay.classList.toggle("hide");
+    createTimer(3, time => countdown.innerText = time, 
+        () => {
+            countdown.innerText = "3";
+            countdown.classList.toggle("hide");
+            document.body.onclick = undefined;
+            result.classList.toggle("hide");
+        }
+    );
+    buzzSound.play();
+}
+
 function buzzer() {
-    if (!overlay.classList.contains("hide"))
+    let time = parseInt(timeLeft.innerText.slice(1));
+    if (!overlay.classList.contains("hide") || timeLeft == 0)
         return;
 
     if (timerId === undefined) {
         let r = parseInt(Math.random()*words.length);
         word.innerText = words[r];
         timerId = createTimer(
-            parseInt(timeLeft.innerText.slice(1)), 
+            time, 
             time => timeLeft.innerText = ":" + (time > 9 ? time : "0" + time), 
             () => {
                 timerId = undefined;
                 timeOverSound.play();
+                document.getElementById("skip-btn").classList.toggle("hide");
+                answerProcedure();
             }
         );
         wordSound.play();
-    } else {
-        stopTimer(timerId, () => timerId = undefined);
-        overlay.classList.toggle("hide");
-        createTimer(3, time => countdown.innerText = time, 
-            () => {
-                countdown.innerText = "3";
-                countdown.classList.toggle("hide");
-                document.body.onclick = undefined;
-                result.classList.toggle("hide");
-            }
-        );
-        buzzSound.play();
-    }
+    } else answerProcedure();
 }
 
 function createTimer(start, onupdate, onfinish) {
