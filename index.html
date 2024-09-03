@@ -23,33 +23,31 @@
         </div>
         <div class="restart hide" id="restart">
             <h2>Punteggio: <span id="score"></span></h2>
-            <i onclick="restart()" class="bi bi-arrow-counterclockwise restart-btn"></i>
+            <button class="restart-btn" onclick="restart()"><i class="bi bi-arrow-counterclockwise"></i></button>
         </div>
     </div>
 
     <header>
         <h1>L'Intesa Vincente</h1>
     </header>
-    <main>
-        <div class="center">
-            <p class="instruction hide" id="instr-desktop">Premi <label class="highlight">spazio</label> per giocare</p>
-            <p class="instruction hide" id="instr-mobile">Tocca lo <label class="highlight">schermo</label> per giocare</p>
-            <h3 class="word" id="word"></h2>
-            <div class="stats">
-                <div>
-                    <h3 class="guessed" id="guessed">0</h3>
-                    <h3 class="time" id="time-left">:60</h3>
-                </div>
-                <div>
-                    <h3 class="skips">
-                        <label class="name">Passo</label>
-                        <span id="skips">3</span>
-                    </h3>
-                    <h3 class="doubles">
-                        <label class="name">Raddoppia</label>
-                        <span id="doubles">2</span>
-                    </h3>
-                </div>
+    <main class="center">
+        <p class="instruction hide" id="instr-desktop">Premi <label class="highlight">spazio</label> per giocare</p>
+        <p class="instruction hide" id="instr-mobile">Tocca lo <label class="highlight">schermo</label> per giocare</p>
+        <h3 class="word" id="word"></h2>
+        <div class="stats">
+            <div>
+                <h3 class="guessed" id="guessed">0</h3>
+                <h3 class="time" id="time-left">:60</h3>
+            </div>
+            <div>
+                <h3 class="skips">
+                    <label class="name">Passo</label>
+                    <span id="skips">3</span>
+                </h3>
+                <h3 class="doubles">
+                    <label class="name">Raddoppia</label>
+                    <span id="doubles">2</span>
+                </h3>
             </div>
         </div>
     </main>
