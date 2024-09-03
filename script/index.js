@@ -8,6 +8,7 @@ let skips;
 let overlay;
 let countdown;
 let result;
+let menu;
 
 let words;
 let doubleWords;
@@ -57,6 +58,7 @@ window.onload = function() {
     overlay = document.getElementById("overlay");
     countdown = document.getElementById("countdown");
     result = document.getElementById("result");
+    menu = document.getElementById("restart");
 
     checkDevice();
     loadWords();
@@ -65,6 +67,10 @@ window.onload = function() {
 
 function answerProcedure() {
     stopTimer(timerId, () => timerId = undefined);
+    let skipBtn = document.getElementById("skip-btn");
+    if (parseInt(skips.innerText) > 0)
+        skipBtn.classList.remove("hide");
+    else skipBtn.classList.add("hide");
     overlay.classList.toggle("hide");
     createTimer(3, time => countdown.innerText = time, 
         () => {
@@ -77,8 +83,12 @@ function answerProcedure() {
     buzzSound.play();
 }
 
+function getTimeLeft() {
+    return parseInt(timeLeft.innerText.slice(1));
+}
+
 function buzzer() {
-    let time = parseInt(timeLeft.innerText.slice(1));
+    let time = getTimeLeft();
     if (!overlay.classList.contains("hide") || timeLeft == 0)
         return;
 
@@ -91,7 +101,6 @@ function buzzer() {
             () => {
                 timerId = undefined;
                 timeOverSound.play();
-                document.getElementById("skip-btn").classList.toggle("hide");
                 answerProcedure();
             }
         );
@@ -116,6 +125,12 @@ function stopTimer(id, onfinish) {
         onfinish();
 }
 
+function hideOverlay() {
+    countdown.classList.toggle("hide");
+    overlay.classList.toggle("hide");
+    setTimeout(checkDevice, 300);
+}
+
 function resultButton(btn) {
     if (btn.innerText == "Passo") {
         let leftSkips = parseInt(skips.innerText);
@@ -135,7 +150,20 @@ function resultButton(btn) {
     }
 
     result.classList.toggle("hide");
-    countdown.classList.toggle("hide");
-    overlay.classList.toggle("hide");
-    setTimeout(checkDevice, 300);
+    if (getTimeLeft() > 0)
+        hideOverlay();
+    else {
+        document.getElementById("score").innerText = guessed.innerText;
+        menu.classList.toggle("hide");
+    }
+}
+
+function restart() {
+    menu.classList.toggle("hide");
+    hideOverlay();
+    word.innerText = "";
+    timeLeft.innerText = ":60";
+    guessed.innerText = "0";
+    skips.innerText = "3";
+    doubles.innerText = "2";
 }
