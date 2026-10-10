@@ -12,6 +12,7 @@ let menu;
 
 let words;
 let doubleWords;
+let usedWords;
 
 let timerId;
 
@@ -87,14 +88,25 @@ function getTimeLeft() {
     return parseInt(timeLeft.innerText.slice(1));
 }
 
+function randomWord() {
+    let remainingWords = words-usedWords;
+    if (remainingWords.length() == 0) {
+        remainingWords = words;
+        usedWords = [];
+    }
+    
+    console.log(remainingWords)
+    let r = parseInt(Math.random()*remainingWords.length);
+    return words[r];
+}
+ 
 function buzzer() {
     let time = getTimeLeft();
     if (!overlay.classList.contains("hide") || timeLeft == 0)
         return;
 
     if (timerId === undefined) {
-        let r = parseInt(Math.random()*words.length);
-        word.innerText = words[r];
+        word.innerText = randomWord();
         timerId = createTimer(
             time, 
             time => timeLeft.innerText = ":" + (time > 9 ? time : "0" + time), 

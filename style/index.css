@@ -223,8 +223,14 @@ button:active {
 
 .result .skip {
     background-color: aqua;
-    margin-left: 1vw;
+    margin: 0 1vw;
     width: 13vh;
+}
+
+.result .no-answer {
+    background-color: rgb(255, 161, 20);
+    margin-left: 1vw;
+    width: 17vh;
 }
 
 .restart h2 {
