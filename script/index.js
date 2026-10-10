@@ -22,7 +22,7 @@ let timeOverSound;
 
 async function loadTextFile(file) {
     let text = await (await fetch(file)).text();
-    return new Set(text.split("\n"));
+    return text.split("\n");
 }
 
 async function loadWords() {
@@ -98,8 +98,9 @@ function randomWord() {
 
     console.log(remainingWords)
     let r = parseInt(Math.random()*remainingWords.length);
-    usedWords.add(words[r]);
-    return words[r];
+    choice = remainingWords[r];
+    usedWords.add(choice);
+    return choice;
 }
  
 function buzzer() {
