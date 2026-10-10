@@ -101,6 +101,8 @@ function buzzer() {
             () => {
                 timerId = undefined;
                 timeOverSound.play();
+                let noAnswerBtn = document.getElementById("no-asnwer-btn");
+                noAnswerBtn.classList.remove("hide");
                 answerProcedure();
             }
         );
@@ -138,14 +140,10 @@ function resultButton(btn) {
         skips.innerText = leftSkips;
         if (leftSkips == 0)
             btn.classList.toggle("hide");
-    } else if (btn.innerText == "Raddoppia") {
-        let leftDoubles = parseInt(doubles.innerText);
-        leftDoubles--;
-        skips.innerText = leftDoubles;
     } else {
         let guessedWords = parseInt(guessed.innerText);
         if (btn.innerText == "Si") guessedWords++;
-        else if (guessedWords > 0) guessedWords--;
+        else if (btn.innerText == "No" && guessedWords > 0) guessedWords--;
         guessed.innerText = guessedWords;
     }
 
@@ -159,6 +157,8 @@ function resultButton(btn) {
 }
 
 function restart() {
+    let noAnswerBtn = document.getElementById("no-asnwer-btn");
+    noAnswerBtn.classList.add("hide");
     menu.classList.toggle("hide");
     hideOverlay();
     word.innerText = "";
