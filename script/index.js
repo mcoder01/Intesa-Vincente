@@ -22,12 +22,13 @@ let timeOverSound;
 
 async function loadTextFile(file) {
     let text = await (await fetch(file)).text();
-    return text.split("\n");
+    return new Set(text.split("\n"));
 }
 
 async function loadWords() {
     words = await loadTextFile("res/parole.txt");
     doubleWords = await loadTextFile("res/raddoppio.txt");
+    usedWords = new Set();
 }
 
 function loadSounds() {
@@ -89,14 +90,15 @@ function getTimeLeft() {
 }
 
 function randomWord() {
-    let remainingWords = words-usedWords;
-    if (remainingWords.length() == 0) {
+    let remainingWords = words.filter(word => !usedWords.has(word));
+    if (remainingWords.length == 0) {
         remainingWords = words;
-        usedWords = [];
+        usedWords.clear();
     }
-    
+
     console.log(remainingWords)
     let r = parseInt(Math.random()*remainingWords.length);
+    usedWords.add(words[r]);
     return words[r];
 }
  
