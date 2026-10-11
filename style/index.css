@@ -138,12 +138,12 @@ button:active {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 60px;
+    gap: 80px;
 }
 
 .stats div {
     display: flex;
-    gap: 60px;
+    gap: 80px;
 }
 
 .guessed, .time, .skips, .doubles {
