@@ -86,7 +86,7 @@ function answerProcedure() {
 }
 
 function getTimeLeft() {
-    return parseInt(timeLeft.innerText.slice(1));
+    return parseInt(timeLeft.innerText);
 }
 
 function randomWord() {
@@ -96,7 +96,6 @@ function randomWord() {
         usedWords.clear();
     }
 
-    console.log(remainingWords)
     let r = parseInt(Math.random()*remainingWords.length);
     choice = remainingWords[r];
     usedWords.add(choice);
@@ -112,7 +111,7 @@ function buzzer() {
         word.innerText = randomWord();
         timerId = createTimer(
             time, 
-            time => timeLeft.innerText = ":" + (time > 9 ? time : "0" + time), 
+            time => timeLeft.innerText = time > 9 ? time : "0" + time, 
             () => {
                 timerId = undefined;
                 timeOverSound.play();
@@ -177,7 +176,7 @@ function restart() {
     menu.classList.toggle("hide");
     hideOverlay();
     word.innerText = "";
-    timeLeft.innerText = ":60";
+    timeLeft.innerText = "60";
     guessed.innerText = "0";
     skips.innerText = "3";
     doubles.innerText = "2";

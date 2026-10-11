@@ -138,12 +138,12 @@ button:active {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 8vh;
+    gap: 60px;
 }
 
 .stats div {
     display: flex;
-    gap: 8vh;
+    gap: 60px;
 }
 
 .guessed, .time, .skips, .doubles {
@@ -156,8 +156,8 @@ button:active {
 .time::before, 
 .skips::before, 
 .doubles::before {
-    width: 9vh;
-    height: 9vh;
+    width: 80px;
+    height: 80px;
 }
 
 .guessed::before {
@@ -172,7 +172,7 @@ button:active {
     background-color: rgb(255, 161, 20);
 }
 
-.skips .name, .doubles .name {
+h3 .name {
     font-size: 1vh;
 }
 
@@ -206,31 +206,29 @@ button:active {
 
 .result button {
     font-size: 4vh;
-    width: 8vh;
+    width: 13vh;
     height: 8vh;
     transition: 0.05s;
+    margin: 0 5px;
 }
 
 .result .yes {
     background-color: lime;
-    margin-right: 1vw;
 }
 
 .result .no {
     background-color: red;
-    margin: 0 1vw;
 }
 
 .result .skip {
     background-color: aqua;
-    margin: 0 1vw;
-    width: 13vh;
 }
 
 .result .no-answer {
     background-color: rgb(255, 161, 20);
-    margin-left: 1vw;
-    width: 17vh;
+    margin-top: 20px;
+    width: 43vh;
+    vertical-align: middle;
 }
 
 .restart h2 {
@@ -260,7 +258,7 @@ footer {
     }
 
     button {
-        border-radius: 2.2vw;
+        border-radius: 1.8vw;
     }
 
     .instruction {
@@ -274,11 +272,11 @@ footer {
 
     .stats {
         flex-direction: row;
-        gap: 6vw;
+        gap: 70px;
     }
 
     .stats div {
-        gap: 6vw;
+        gap: 70px;
     }
 
     h3 {
@@ -311,16 +309,16 @@ footer {
     }
 
     .result button {
-        width: 8vw;
-        height: 8vw;
-        font-size: 4vw;
+        font-size: 3vw;
+        width: 12vw;
+        height: 11vh;
     }
 
-    .result .skip {
-        width: 13vw;
+    .result .no-answer {
+        width: 38vw;
     }
 
-    .skips .name, .doubles .name {
+    h3 .name {
         font-size: 1vw;
         transform: translateY(2px);
     }

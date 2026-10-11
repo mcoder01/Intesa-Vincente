@@ -17,10 +17,14 @@
         <h2 class="countdown" id="countdown">3</h2>
         <div class="result hide" id="result">
             <h2 class="question">Hai indovinato?</h2>
-            <button class="result yes" onclick="resultButton(this)">Si</button>
-            <button class="result no" onclick="resultButton(this)">No</button>
-            <button class="result skip" id="skip-btn" onclick="resultButton(this)">Passo</button>
-            <button class="result no-answer hide" id="no-asnwer-btn" onclick="resultButton(this)">Nessuna risposta</button>
+            <div>
+                <button class="result yes" onclick="resultButton(this)">Si</button>
+                <button class="result no" onclick="resultButton(this)">No</button>
+                <button class="result skip" id="skip-btn" onclick="resultButton(this)">Passo</button>
+            </div>
+            <div>
+                <button class="result no-answer hide" id="no-asnwer-btn" onclick="resultButton(this)">Nessuna risposta</button>
+            </div>
         </div>
         <div class="restart hide" id="restart">
             <h2>Punteggio: <span id="score"></span></h2>
@@ -37,8 +41,14 @@
         <h3 class="word" id="word"></h2>
         <div class="stats">
             <div>
-                <h3 class="guessed" id="guessed">0</h3>
-                <h3 class="time" id="time-left">:60</h3>
+                <h3 class="guessed">
+                    <label class="name">Punteggio</label>
+                    <span id="guessed">0</span>
+                </h3>
+                <h3 class="time">
+                    <label class="name">Tempo</label>
+                    <span id="time-left">60</span>
+                </h3>
             </div>
             <div>
                 <h3 class="skips">
@@ -53,7 +63,7 @@
         </div>
     </main>
     <footer>
-        <p class="copyright">Manuel Manco 2024® | Versione 1.2</p>
+        <p class="copyright">Manuel Manco 2024® | Versione 1.3</p>
     </footer>
     <script src="script/index.js"></script>
 </body>
